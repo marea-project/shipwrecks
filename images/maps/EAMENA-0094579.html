@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	
+
+	<title>GeoJSON tutorial - Leaflet</title>
+
+	
+
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"/>
+
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
+
+
+
+	<style>
+
+		html, body {
+
+			height: 100%;
+
+			margin: 0;
+
+		}
+
+		.leaflet-container {
+
+			height: 400px;
+
+			width: 600px;
+
+			max-width: 100%;
+
+			max-height: 100%;
+
+		}
+
+	</style>
+
+
+
+	
+
+</head>
+
+<body>
+
+
+
+<div id='map' style="width: 100%; height: 100%;"></div>
+
+
+
+<script>
+
+	var data = {"type": "Feature", "geometry": {"type": "Polygon", "coordinates": [[[35.878116, 34.940942], [35.878031, 34.941092], [35.877933, 34.940938], [35.877878, 34.940726], [35.877882, 34.940454], [35.878001, 34.940454], [35.878129, 34.940457], [35.878142, 34.940565], [35.878137, 34.940729], [35.878129, 34.940865], [35.878116, 34.940942]]]}, "properties": {"EAMENA ID": "EAMENA-0094579"}} ;
+
+
+
+	var map = L.map('map', {center: [50.9, -1.0], zoom: 2});
+
+
+
+	var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+
+		maxZoom: 19,
+
+		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+
+	}).addTo(map);
+
+
+
+	var layer = L.geoJSON(data).addTo(map);
+
+	var bnd = layer.getBounds();
+
+
+
+	map.setView(bnd.getCenter(), 12);
+
+
+
+</script>
+
+
+
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	
+
+	<title>GeoJSON tutorial - Leaflet</title>
+
+	
+
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"/>
+
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
+
+
+
+	<style>
+
+		html, body {
+
+			height: 100%;
+
+			margin: 0;
+
+		}
+
+		.leaflet-container {
+
+			height: 400px;
+
+			width: 600px;
+
+			max-width: 100%;
+
+			max-height: 100%;
+
+		}
+
+	</style>
+
+
+
+	
+
+</head>
+
+<body>
+
+
+
+<div id='map' style="width: 100%; height: 100%;"></div>
+
+
+
+<script>
+
+	var data = {"type": "Feature", "geometry": {"type": "Polygon", "coordinates": [[[51.727787, 24.579641], [51.727775, 24.579622], [51.727765, 24.579602], [51.727759, 24.579583], [51.727758, 24.579565], [51.72776, 24.579549], [51.727766, 24.579534], [51.727776, 24.579523], [51.727789, 24.579515], [51.727805, 24.579511], [51.727824, 24.57951], [51.727843, 24.579514], [51.727864, 24.579521], [51.727884, 24.579531], [51.727904, 24.579544], [51.727922, 24.57956], [51.727938, 24.579578], [51.72795, 24.579597], [51.72796, 24.579617], [51.727966, 24.579636], [51.727967, 24.579654], [51.727965, 24.57967], [51.727959, 24.579685], [51.727949, 24.579696], [51.727936, 24.579704], [51.72792, 24.579708], [51.727901, 24.579709], [51.727882, 24.579705], [51.727861, 24.579698], [51.727841, 24.579688], [51.727821, 24.579675], [51.727803, 24.579659], [51.727787, 24.579641]]]}, "properties": {"EAMENA ID": "EAMENA-0137309"}} ;
+
+
+
+	var map = L.map('map', {center: [50.9, -1.0], zoom: 2});
+
+
+
+	var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+
+		maxZoom: 19,
+
+		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+
+	}).addTo(map);
+
+
+
+	var layer = L.geoJSON(data).addTo(map);
+
+	var bnd = layer.getBounds();
+
+
+
+	map.setView(bnd.getCenter(), 12);
+
+
+
+</script>
+
+
+
+
+
+
+
+</body>
+
+</html>

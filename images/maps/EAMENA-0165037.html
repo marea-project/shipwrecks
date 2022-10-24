@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	
+
+	<title>GeoJSON tutorial - Leaflet</title>
+
+	
+
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"/>
+
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
+
+
+
+	<style>
+
+		html, body {
+
+			height: 100%;
+
+			margin: 0;
+
+		}
+
+		.leaflet-container {
+
+			height: 400px;
+
+			width: 600px;
+
+			max-width: 100%;
+
+			max-height: 100%;
+
+		}
+
+	</style>
+
+
+
+	
+
+</head>
+
+<body>
+
+
+
+<div id='map' style="width: 100%; height: 100%;"></div>
+
+
+
+<script>
+
+	var data = {"type": "Feature", "geometry": {"type": "Polygon", "coordinates": [[[55.975504, 25.820583], [55.975847, 25.821059], [55.976215, 25.821416], [55.976569, 25.822005], [55.976483, 25.822468], [55.976333, 25.823009], [55.976129, 25.823144], [55.975796, 25.823125], [55.975539, 25.823125], [55.975099, 25.823096], [55.974788, 25.823086], [55.974386, 25.822881], [55.974372, 25.822881], [55.97407, 25.822648], [55.974052, 25.822636], [55.973737, 25.822428], [55.973723, 25.822412], [55.973426, 25.822216], [55.973257, 25.822023], [55.973257, 25.822015], [55.973186, 25.821779], [55.973181, 25.821767], [55.973205, 25.821585], [55.973288, 25.821471], [55.973288, 25.821459], [55.973431, 25.821203], [55.97344, 25.821187], [55.973449, 25.821183], [55.973966, 25.820821], [55.975373, 25.819701], [55.975504, 25.820583]]]}, "properties": {"EAMENA ID": "EAMENA-0165037"}} ;
+
+
+
+	var map = L.map('map', {center: [50.9, -1.0], zoom: 2});
+
+
+
+	var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+
+		maxZoom: 19,
+
+		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+
+	}).addTo(map);
+
+
+
+	var layer = L.geoJSON(data).addTo(map);
+
+	var bnd = layer.getBounds();
+
+
+
+	map.setView(bnd.getCenter(), 12);
+
+
+
+</script>
+
+
+
+
+
+
+
+</body>
+
+</html>

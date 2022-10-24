@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	
+
+	<title>GeoJSON tutorial - Leaflet</title>
+
+	
+
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"/>
+
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
+
+
+
+	<style>
+
+		html, body {
+
+			height: 100%;
+
+			margin: 0;
+
+		}
+
+		.leaflet-container {
+
+			height: 400px;
+
+			width: 600px;
+
+			max-width: 100%;
+
+			max-height: 100%;
+
+		}
+
+	</style>
+
+
+
+	
+
+</head>
+
+<body>
+
+
+
+<div id='map' style="width: 100%; height: 100%;"></div>
+
+
+
+<script>
+
+	var data = {"type": "Feature", "geometry": {"type": "Polygon", "coordinates": [[[53.19193, 24.398604], [53.191905, 24.39863], [53.19188, 24.398651], [53.191855, 24.398668], [53.191831, 24.39868], [53.191809, 24.398687], [53.19179, 24.398687], [53.191781, 24.398685], [53.191774, 24.398682], [53.191767, 24.398677], [53.191762, 24.398671], [53.191755, 24.398654], [53.191753, 24.398633], [53.191755, 24.398608], [53.191763, 24.398581], [53.191774, 24.398551], [53.191791, 24.398521], [53.19181, 24.398491], [53.191832, 24.398463], [53.191856, 24.398438], [53.191881, 24.398416], [53.191907, 24.398399], [53.191931, 24.398387], [53.191953, 24.398381], [53.191972, 24.39838], [53.191981, 24.398382], [53.191988, 24.398386], [53.191994, 24.398391], [53.192, 24.398397], [53.192007, 24.398413], [53.192009, 24.398434], [53.192007, 24.398459], [53.191999, 24.398487], [53.191987, 24.398516], [53.191971, 24.398547], [53.191952, 24.398576], [53.19193, 24.398604]]]}, "properties": {"EAMENA ID": "EAMENA-0160133"}} ;
+
+
+
+	var map = L.map('map', {center: [50.9, -1.0], zoom: 2});
+
+
+
+	var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+
+		maxZoom: 19,
+
+		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+
+	}).addTo(map);
+
+
+
+	var layer = L.geoJSON(data).addTo(map);
+
+	var bnd = layer.getBounds();
+
+
+
+	map.setView(bnd.getCenter(), 12);
+
+
+
+</script>
+
+
+
+
+
+
+
+</body>
+
+</html>

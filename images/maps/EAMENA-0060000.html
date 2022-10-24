@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	
+
+	<title>GeoJSON tutorial - Leaflet</title>
+
+	
+
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+
+
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"/>
+
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
+
+
+
+	<style>
+
+		html, body {
+
+			height: 100%;
+
+			margin: 0;
+
+		}
+
+		.leaflet-container {
+
+			height: 400px;
+
+			width: 600px;
+
+			max-width: 100%;
+
+			max-height: 100%;
+
+		}
+
+	</style>
+
+
+
+	
+
+</head>
+
+<body>
+
+
+
+<div id='map' style="width: 100%; height: 100%;"></div>
+
+
+
+<script>
+
+	var data = {"type": "Feature", "geometry": {"type": "Polygon", "coordinates": [[[21.965487, 32.90425], [21.964414, 32.900286], [21.965723, 32.90025], [21.96774, 32.900088], [21.971023, 32.900413], [21.97967, 32.901259], [21.979585, 32.901998], [21.979713, 32.902827], [21.978619, 32.903944], [21.976752, 32.904106], [21.975143, 32.90407], [21.974799, 32.904268], [21.974392, 32.905079], [21.974134, 32.905223], [21.974006, 32.904881], [21.973426, 32.903655], [21.972353, 32.903385], [21.971409, 32.903782], [21.971559, 32.904358], [21.971989, 32.904899], [21.973104, 32.905259], [21.97334, 32.905871], [21.972782, 32.90634], [21.971023, 32.906772], [21.967225, 32.906376], [21.965487, 32.90425]]]}, "properties": {"EAMENA ID": "EAMENA-0060000"}} ;
+
+
+
+	var map = L.map('map', {center: [50.9, -1.0], zoom: 2});
+
+
+
+	var tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+
+		maxZoom: 19,
+
+		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+
+	}).addTo(map);
+
+
+
+	var layer = L.geoJSON(data).addTo(map);
+
+	var bnd = layer.getBounds();
+
+
+
+	map.setView(bnd.getCenter(), 12);
+
+
+
+</script>
+
+
+
+
+
+
+
+</body>
+
+</html>
